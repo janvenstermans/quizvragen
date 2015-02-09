@@ -12,19 +12,19 @@
   <children>
     <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="265.0" prefWidth="417.0">
       <bottom>
-        <VBox alignment="CENTER" prefHeight="117.0" prefWidth="417.0" spacing="15.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="117.0" prefWidth="416.9998779296875" spacing="15.0" BorderPane.alignment="CENTER">
           <children>
-            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="417.0">
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="228.0" spacing="15.0">
               <children>
-                <Button id="showAnswerButton" fx:id="selectFileButton" onAction="#handleSelectFileButtonAction" prefWidth="153.0" text="Selecteer File ..." />
-                <Label fx:id="fileNameLabel" text="No File selected">
+                <Button id="showAnswerButton" fx:id="selectFileButton" onAction="#handleSelectFileButtonAction" prefWidth="109.0" text="Selecteer File ..." />
+                <Label fx:id="fileNameLabel" prefWidth="261.0" text="No File selected">
                   <font>
                     <Font size="15.0" />
                   </font>
                 </Label>
               </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Load file" />
+            <Button fx:id="loadFileButton" mnemonicParsing="false" onAction="#handleLoadFileButtonAction" text="Laden" />
           </children>
           <padding>
             <Insets />

@@ -27,6 +27,11 @@ public class StartupViewController implements Initializable, StartupPresenter.Vi
         startupHandler.onSelectFile();
     }
     
+    @FXML
+    private void handleLoadFileButtonAction(ActionEvent event) {
+        startupHandler.onLoadFile();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         title.setText("Quizvragen");

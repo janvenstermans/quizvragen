@@ -27,6 +27,8 @@ public interface StartupPresenter {
     public interface Handler {
 
         public void onSelectFile();
+        
+        public void onLoadFile();
 
     }
 }

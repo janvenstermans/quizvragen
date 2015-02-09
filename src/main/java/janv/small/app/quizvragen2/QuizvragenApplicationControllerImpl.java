@@ -159,6 +159,13 @@ public class QuizvragenApplicationControllerImpl
         File file = stageContainer.onSelectFile();
         if (file != null && file.isFile()) {
             Quizvragen.setFileName(file.getAbsolutePath());
+        }
+    }
+
+    @Override
+    public void onLoadFileContent() {
+        String filePath = Quizvragen.getFileName();
+        if (filePath != null && !filePath.isEmpty()) {
             createPersistence();
             showSelectionView();
         }

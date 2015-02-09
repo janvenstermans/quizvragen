@@ -6,6 +6,7 @@
 
 package janv.small.app.quizvragen2.domain;
 
+import janv.small.app.quizvragen2.Quizvragen;
 import janv.small.app.quizvragen2.QuizvragenApplicationController;
 
 /**
@@ -34,5 +35,11 @@ public class StartupPresenterImpl implements StartupPresenter,
     @Override
     public void onSelectFile() {
         applicationController.onSelectFile();
+        view.setFileName(Quizvragen.getFileName());
+    }
+
+    @Override
+    public void onLoadFile() {
+        applicationController.onLoadFileContent();
     }
 }

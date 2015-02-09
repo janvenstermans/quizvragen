@@ -26,5 +26,6 @@ public interface QuizvragenApplicationController {
     public void updateStatus(Integer currentQuestionId, boolean improve);
 
     public void onSelectFile();
+    public void onLoadFileContent();
     
 }
