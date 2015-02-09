@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="417.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="janv.small.app.quizvragen2.view.StartupViewController">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="265.0" prefWidth="417.0">
+      <bottom>
+        <VBox alignment="CENTER" prefHeight="117.0" prefWidth="417.0" spacing="15.0" BorderPane.alignment="CENTER">
+          <children>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="417.0">
+              <children>
+                <Button id="showAnswerButton" fx:id="selectFileButton" onAction="#handleSelectFileButtonAction" prefWidth="153.0" text="Selecteer File ..." />
+                <Label fx:id="fileNameLabel" text="No File selected">
+                  <font>
+                    <Font size="15.0" />
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Load file" />
+          </children>
+          <padding>
+            <Insets />
+          </padding>
+          <BorderPane.margin>
+            <Insets />
+          </BorderPane.margin>
+        </VBox>
+      </bottom>
+      <top>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Label fx:id="title" text="Quizvragen">
+              <font>
+                <Font size="35.0" />
+              </font>
+            </Label>
+          </children>
+        </HBox>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

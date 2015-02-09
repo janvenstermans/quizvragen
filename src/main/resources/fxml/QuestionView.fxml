@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="417.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="janv.small.app.quizvragen2.view.QuestionViewController">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="265.0" prefWidth="417.0">
+      <bottom>
+        <BorderPane prefHeight="53.0" prefWidth="417.0" BorderPane.alignment="BOTTOM_LEFT">
+          <center>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="417.0" spacing="20.0">
+              <children>
+                <Button fx:id="okButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleOkButtonAction" text="ok" />
+                <Button fx:id="notOkButton" mnemonicParsing="false" onAction="#handleNotOkButtonAction" text="nt ok" />
+              </children>
+            </HBox>
+          </center>
+          <right>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="53.0" prefWidth="138.0">
+              <children>
+                <Button fx:id="newSelectionButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleNewSelectionButtonAction" text="Niewe Selectie">
+                  <VBox.margin>
+                    <Insets />
+                  </VBox.margin>
+                </Button>
+              </children>
+              <BorderPane.margin>
+                <Insets bottom="10.0" right="10.0" />
+              </BorderPane.margin>
+            </VBox>
+          </right>
+        </BorderPane>
+      </bottom>
+      <center>
+        <VBox prefHeight="265.0" prefWidth="417.0" spacing="10.0">
+          <children>
+            <Label fx:id="questionLabel" minHeight="16.0" minWidth="69.0" prefHeight="103.0" prefWidth="425.0" text="" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+              <children>
+                <Button fx:id="showAnswerButton" onAction="#handleShowAnswerButtonAction" prefWidth="100.0" text="Antwoord" />
+                <Label fx:id="aswerLabel" prefHeight="68.0" prefWidth="223.0" text="" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets />
+          </padding>
+          <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+          </BorderPane.margin>
+        </VBox>
+      </center>
+      <top>
+        <BorderPane prefHeight="20.0" prefWidth="412.0">
+          <right>
+            <Label fx:id="questionCount" text="1/20" BorderPane.alignment="TOP_RIGHT" />
+          </right>
+          <BorderPane.margin>
+            <Insets right="5.0" top="5.0" />
+          </BorderPane.margin>
+        </BorderPane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
