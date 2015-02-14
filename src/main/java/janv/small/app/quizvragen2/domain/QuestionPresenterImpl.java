@@ -70,13 +70,13 @@ public class QuestionPresenterImpl implements QuestionPresenter,
 
     @Override
     public void onOk(int increment) {
-        applicationController.updateStatus(getCurrentQuestion().getRowId(), true);
+        applicationController.updateStatus(getCurrentQuestion().getRowId(), true, increment);
         loadNextQuestion();
     }
 
     @Override
     public void onNotOk(int decrement) {
-        applicationController.updateStatus(getCurrentQuestion().getRowId(), false);
+        applicationController.updateStatus(getCurrentQuestion().getRowId(), false, decrement);
         loadNextQuestion();
     }
 

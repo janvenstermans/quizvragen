@@ -23,7 +23,7 @@ public interface QuizvragenApplicationController {
     
     public void showStartupView();
 
-    public void updateStatus(Integer currentQuestionId, boolean improve);
+    public void updateStatus(Integer currentQuestionId, boolean improve, int increment);
 
     public void onSelectFile();
     public void onLoadFileContent();

@@ -142,10 +142,10 @@ public class QuizvragenApplicationControllerImpl
     }
 
     @Override
-    public void updateStatus(Integer currentQuestionId, boolean improve) {
+    public void updateStatus(Integer currentQuestionId, boolean improve, int increment) {
         if (currentQuestionId != null && questions.containsKey(currentQuestionId)) {
            Question question = questions.get(currentQuestionId);
-           persistence.saveCategory(question.getRowId(), CategoryUtil.getNewCategory(question.getStatus(), improve));
+           persistence.saveCategory(question.getRowId(), CategoryUtil.getNewCategory(question.getStatus(), improve, increment));
         }
     }    
 
