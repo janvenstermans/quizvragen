@@ -8,6 +8,7 @@ package janv.small.app.quizvragen2.domain;
 
 import janv.small.app.quizvragen2.QuizvragenApplicationController;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -26,12 +27,16 @@ public class QuestionPresenterImpl implements QuestionPresenter,
     private List<Integer> idsList;
     
     private int currentQuestionIndex;
+    private int defaultIncrementValue;
 
     public QuestionPresenterImpl(QuizvragenApplicationController applicationController,
             View view) {
         this.applicationController = applicationController;
         this.view = view;
         view.setHandler(this);
+        // increment values
+        view.setIncrementValues(Arrays.asList(new Integer[] {1, 2, 5, 10, 20}));
+        defaultIncrementValue = 2;
     }
 
     @Override
@@ -50,6 +55,7 @@ public class QuestionPresenterImpl implements QuestionPresenter,
             view.setAnswerVisible(false);
             Question question = questionsLinkedHashMap.get(questionId);
             view.setQuestionAnswer(question.getQuestion(), question.getResponse());
+            view.setShownIncrementValue(defaultIncrementValue);
             int questionPosition = currentQuestionIndex + 1;
             view.setCountLabel(questionPosition + "/" + questionsLinkedHashMap.size());
         } else {
@@ -63,13 +69,13 @@ public class QuestionPresenterImpl implements QuestionPresenter,
     }
 
     @Override
-    public void onOk() {
+    public void onOk(int increment) {
         applicationController.updateStatus(getCurrentQuestion().getRowId(), true);
         loadNextQuestion();
     }
 
     @Override
-    public void onNotOk() {
+    public void onNotOk(int decrement) {
         applicationController.updateStatus(getCurrentQuestion().getRowId(), false);
         loadNextQuestion();
     }

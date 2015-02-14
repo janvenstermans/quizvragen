@@ -2,11 +2,14 @@ package janv.small.app.quizvragen2.view;
 
 import janv.small.app.quizvragen2.domain.QuestionPresenter;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 public class QuestionViewController implements Initializable, QuestionPresenter.View {
@@ -29,6 +32,9 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     @FXML
     private Label questionCount;
     
+    @FXML
+    private ChoiceBox incrementChoiceBox;
+    
     private QuestionPresenter.Handler vragenHandler;
     
     @FXML
@@ -39,12 +45,12 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     
     @FXML
     private void handleOkButtonAction(ActionEvent event) {
-        vragenHandler.onOk();
+        vragenHandler.onOk(getIncrementChoiceBoxValue());
     }
     
     @FXML
     private void handleNotOkButtonAction(ActionEvent event) {
-        vragenHandler.onNotOk();
+        vragenHandler.onNotOk(getIncrementChoiceBoxValue());
     }
     
     @FXML
@@ -66,9 +72,6 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     @Override
     public void setAnswerVisible(boolean visible) {
         aswerLabel.setVisible(visible);
-        //notOkButton.setVisible(visible);
-        //okButton.setVisible(visible);
-        //showAnswerButton.setVisible(!visible);
     }
 
     @Override
@@ -94,5 +97,19 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     @Override
     public void setCountLabel(String countLabel) {
         questionCount.setText(countLabel);
+    }
+    
+    @Override
+    public void setIncrementValues(List<Integer> incrementValues) {
+        incrementChoiceBox.setItems(FXCollections.observableArrayList(incrementValues));
+    }
+    
+    @Override
+    public void setShownIncrementValue(Integer incrementValue) {
+        incrementChoiceBox.setValue(incrementValue);
+    }
+    
+    private int getIncrementChoiceBoxValue() {
+        return (Integer) incrementChoiceBox.getValue();
     }
 }

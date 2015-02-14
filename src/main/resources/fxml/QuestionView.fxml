@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -15,8 +16,20 @@
           <center>
             <HBox alignment="CENTER" prefHeight="60.0" prefWidth="417.0" spacing="20.0">
               <children>
-                <Button fx:id="okButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleOkButtonAction" text="ok" />
-                <Button fx:id="notOkButton" mnemonicParsing="false" onAction="#handleNotOkButtonAction" text="nt ok" />
+                <ChoiceBox fx:id="incrementChoiceBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="60.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Item 1" />
+                      <String fx:value="Item 2" />
+                      <String fx:value="Item 3" />
+                    </FXCollections>
+                  </items>
+                  <HBox.margin>
+                    <Insets right="20.0" />
+                  </HBox.margin>
+                </ChoiceBox>
+                <Button fx:id="okButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleOkButtonAction" styleClass="questionPanel-okButton" text="ok" />
+                <Button fx:id="notOkButton" mnemonicParsing="false" onAction="#handleNotOkButtonAction" styleClass="questionPanel-ntOkButton" text="nt ok" />
               </children>
             </HBox>
           </center>

@@ -1,3 +1,11 @@
 .button {
     -fx-font-weight: bold;
 }
+
+.questionPanel-okButton {
+    -fx-base: #00FF00;
+}
+
+.questionPanel-ntOkButton {
+    -fx-base: #FF0000;
+}

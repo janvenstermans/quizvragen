@@ -7,6 +7,7 @@
 package janv.small.app.quizvragen2.domain;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,10 @@ public interface QuestionPresenter {
         void setAnswerVisible(boolean visible);
         
         void setQuestionAnswer(String question, String answer);
+        
+        void setIncrementValues(List<Integer> incrementValues);
+        
+        void setShownIncrementValue(Integer incrementValue);
 
         public void setAllQuestionsAsked(boolean b);
 
@@ -32,9 +37,9 @@ public interface QuestionPresenter {
     
     public interface Handler {
 
-        public void onOk();
+        public void onOk(int increment);
 
-        public void onNotOk();
+        public void onNotOk(int decrement);
 
         public void onNewSelection();
 
