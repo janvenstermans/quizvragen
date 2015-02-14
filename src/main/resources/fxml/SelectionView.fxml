@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="417.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="janv.small.app.quizvragen2.view.SelectionViewController">
+<AnchorPane id="AnchorPane" prefHeight="382.0" prefWidth="562.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="janv.small.app.quizvragen2.view.SelectionViewController">
   <children>
-    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="265.0" prefWidth="417.0">
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="382.0" prefWidth="562.0">
       <bottom>
         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="417.0" spacing="20.0">
           <children>
@@ -20,16 +20,16 @@
         </HBox>
       </bottom>
       <center>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
           <children>
-            <VBox alignment="CENTER" prefHeight="265.0" prefWidth="417.0" spacing="10.0">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="265.0" prefWidth="417.0" spacing="10.0">
               <children>
                 <Label text="Category">
                   <font>
                     <Font size="15.0" />
                   </font>
                   <labelFor>
-                    <ListView fx:id="categoryList" prefHeight="122.0" prefWidth="188.5" />
+                    <ListView fx:id="categoryList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="208.0" prefWidth="167.0" />
                   </labelFor>
                 </Label>
                 <fx:reference source="categoryList" />
@@ -42,7 +42,7 @@
               <children>
                 <Label text="Type">
                   <labelFor>
-                    <ListView fx:id="typeList" prefHeight="122.0" prefWidth="188.5" />
+                    <ListView fx:id="typeList" prefHeight="208.0" prefWidth="167.0" />
                   </labelFor>
                 </Label>
                 <fx:reference source="typeList" />
@@ -55,7 +55,7 @@
               <children>
                 <Label text="Status">
                   <labelFor>
-                    <ListView fx:id="statusList" prefHeight="122.0" prefWidth="188.5" />
+                    <ListView fx:id="statusList" prefHeight="208.0" prefWidth="167.0" />
                   </labelFor>
                 </Label>
                 <fx:reference source="statusList" />

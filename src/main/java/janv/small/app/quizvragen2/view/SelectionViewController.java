@@ -2,6 +2,7 @@ package janv.small.app.quizvragen2.view;
 
 import janv.small.app.quizvragen2.domain.SelectionPresenter;
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;

@@ -8,6 +8,8 @@ package janv.small.app.quizvragen2.domain;
 
 import janv.small.app.quizvragen2.QuizvragenApplicationController;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -42,17 +44,24 @@ public class SelectionPresenterImpl implements SelectionPresenter,
 
     @Override
     public void setCategoryChoice(Set<String> categories) {
-        view.setCategoryChoice(new ArrayList<String>(categories));
+        List<String> categoriesList = new ArrayList<String>(categories);
+        Collections.sort(categoriesList);
+        view.setCategoryChoice(categoriesList);
     }
 
     @Override
     public void setTypeChoice(Set<String> types) {
-        view.setTypeChoice(new ArrayList<String>(types));
+        List<String> typesList = new ArrayList<String>(types);
+        Collections.sort(typesList);
+        view.setTypeChoice(typesList);
     }
 
     @Override
     public void setStatusChoice(Set<Integer> statusses) {
-        view.setStatusChoice(new ArrayList<Integer>(statusses));
+        List<Integer> statussesList = new ArrayList<Integer>(statusses);
+        Collections.sort(statussesList);
+        Collections.reverse(statussesList);
+        view.setStatusChoice(statussesList);
     }
 
 }
