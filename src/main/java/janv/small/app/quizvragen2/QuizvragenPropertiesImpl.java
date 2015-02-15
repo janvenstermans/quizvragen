@@ -19,26 +19,16 @@ import java.util.Properties;
 public class QuizvragenPropertiesImpl implements QuizvragenProperties {
     
     private Properties properties;
+    private Properties propertiesSavedFileLocation;
 
     private static String propertiesFileName = "quizvragen.properties";
+    private static String propertiesSavedFileLocationFileName = "savedfilelocation.properties";
 
     public QuizvragenPropertiesImpl() {
         properties = new Properties();
-        InputStream input = null;
-        try {
-            input = QuizvragenPropertiesImpl.class.getClassLoader().getResourceAsStream(propertiesFileName);
-            properties.load(input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        propertiesSavedFileLocation = new Properties();
+        loadPropertiesFile(propertiesFileName, properties);
+        loadPropertiesFile(propertiesSavedFileLocationFileName, propertiesSavedFileLocation);
     }    
 
     @Override
@@ -68,5 +58,32 @@ public class QuizvragenPropertiesImpl implements QuizvragenProperties {
     public int getSuccessIndicatorMaxValue() {
         String value = properties.getProperty("success.indicator.maximum.value");
         return Integer.parseInt(value);
+    }
+
+    @Override
+    public String getSavedFileLocation() {
+        return propertiesSavedFileLocation.getProperty("file.location");
+    }
+    
+    //-----------------------------------------
+    // PRIVATE METHODS
+    //-----------------------------------------
+    
+    private void loadPropertiesFile(String resourceFileName, Properties properties) {
+        InputStream input = null;
+        try {
+            input = QuizvragenPropertiesImpl.class.getClassLoader().getResourceAsStream(resourceFileName);
+            properties.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

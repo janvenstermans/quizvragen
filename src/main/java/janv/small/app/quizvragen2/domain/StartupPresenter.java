@@ -16,6 +16,8 @@ public interface StartupPresenter {
 
     public QuizvragenViewPresenter getView();
     
+    void setFileName(String fileName);
+    
     public interface View extends QuizvragenViewPresenter {
 
         void setHandler(Handler startupHandler);

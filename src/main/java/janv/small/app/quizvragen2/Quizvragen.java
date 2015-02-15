@@ -12,7 +12,7 @@ package janv.small.app.quizvragen2;
  */
 public class Quizvragen {
     
-    private static String fileName;
+    private String fileName;
     
     private QuizvragenApplicationController quizvragenApplicationController;
     
@@ -39,12 +39,12 @@ public class Quizvragen {
         return quizvragenProperties;
     }
 
-    public static String getFileName() {
+    public String getFileName() {
         return fileName;
     }
 
-    public static void setFileName(String fileName) {
-        Quizvragen.fileName = fileName;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
     
 

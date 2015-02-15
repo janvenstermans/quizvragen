@@ -62,13 +62,11 @@ public class QuizvragenApplicationControllerImpl
                 (QuestionPresenter.View) stageContainer.createScene("/fxml/QuestionView.fxml"));
         
         /* show start screen */
-        String fileName = Quizvragen.getFileName();
-        if (fileName != null) {
-            createPersistence();
-            showSelectionView();
-        } else {
-            showStartupView();
+        String savedFileName = Quizvragen.getInstance().getQuizvragenProperties().getSavedFileLocation();
+        if (savedFileName != null) {
+            Quizvragen.getInstance().setFileName(savedFileName);
         }
+        showStartupView();
     }
     
     public void createPersistence() {
@@ -151,6 +149,7 @@ public class QuizvragenApplicationControllerImpl
 
     @Override
     public void showStartupView() {
+        startupPresenter.setFileName(Quizvragen.getInstance().getFileName());
         stageContainer.showScene("Startup", startupPresenter.getView());
     }
 
@@ -158,13 +157,13 @@ public class QuizvragenApplicationControllerImpl
     public void onSelectFile() {
         File file = stageContainer.onSelectFile();
         if (file != null && file.isFile()) {
-            Quizvragen.setFileName(file.getAbsolutePath());
+            Quizvragen.getInstance().setFileName(file.getAbsolutePath());
         }
     }
 
     @Override
     public void onLoadFileContent() {
-        String filePath = Quizvragen.getFileName();
+        String filePath = Quizvragen.getInstance().getFileName();
         if (filePath != null && !filePath.isEmpty()) {
             createPersistence();
             showSelectionView();

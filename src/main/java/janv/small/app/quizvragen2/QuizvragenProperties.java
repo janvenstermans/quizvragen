@@ -22,4 +22,5 @@ public interface QuizvragenProperties {
     
     int getSuccessIndicatorMaxValue();
     
+    String getSavedFileLocation();
 }

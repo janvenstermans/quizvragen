@@ -35,11 +35,16 @@ public class StartupPresenterImpl implements StartupPresenter,
     @Override
     public void onSelectFile() {
         applicationController.onSelectFile();
-        view.setFileName(Quizvragen.getFileName());
+        view.setFileName(Quizvragen.getInstance().getFileName());
     }
 
     @Override
     public void onLoadFile() {
         applicationController.onLoadFileContent();
+    }
+
+    @Override
+    public void setFileName(String fileName) {
+        view.setFileName(fileName);
     }
 }
