@@ -6,14 +6,18 @@
 
 package janv.small.app.quizvragen2.domain;
 
+import janv.small.app.quizvragen2.Quizvragen;
+
 /**
  *
  * @author Jan Venstermans
  */
 public class CategoryUtil {
     
-    private static final int CATEGORY_MIN_VALUE = 1;
-    private static final int CATEGORY_MAX_VALUE = 100;
+    private static final int CATEGORY_MIN_VALUE = Quizvragen.getInstance().
+            getQuizvragenProperties().getSuccessIndicatorMinValue();
+    private static final int CATEGORY_MAX_VALUE = Quizvragen.getInstance().
+            getQuizvragenProperties().getSuccessIndicatorMaxValue();
 
     public static int getCategoryInt(String categoryText) {
         try {

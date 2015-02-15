@@ -12,10 +12,12 @@ package janv.small.app.quizvragen2;
  */
 public class Quizvragen {
     
-    //public String fileName = "C:\\Users\\janv\\Documents\\AlgemeneInfo.xlsx";
     private static String fileName;
     
     private QuizvragenApplicationController quizvragenApplicationController;
+    
+    private QuizvragenProperties quizvragenProperties 
+            = new QuizvragenPropertiesImpl();
     
     private static Quizvragen application = new Quizvragen();
 
@@ -31,6 +33,10 @@ public class Quizvragen {
             quizvragenApplicationController = new QuizvragenApplicationControllerImpl();
         } 
         return quizvragenApplicationController;
+    }
+    
+    public QuizvragenProperties getQuizvragenProperties() {
+        return quizvragenProperties;
     }
 
     public static String getFileName() {

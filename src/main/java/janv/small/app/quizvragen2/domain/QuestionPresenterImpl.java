@@ -6,6 +6,7 @@
 
 package janv.small.app.quizvragen2.domain;
 
+import janv.small.app.quizvragen2.Quizvragen;
 import janv.small.app.quizvragen2.QuizvragenApplicationController;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,8 +36,10 @@ public class QuestionPresenterImpl implements QuestionPresenter,
         this.view = view;
         view.setHandler(this);
         // increment values
-        view.setIncrementValues(Arrays.asList(new Integer[] {1, 2, 5, 10, 20}));
-        defaultIncrementValue = 2;
+        view.setIncrementValues(Quizvragen.getInstance().
+                getQuizvragenProperties().getSuccessIndicatorIncrementChoiceList());
+        defaultIncrementValue = Quizvragen.getInstance().
+                getQuizvragenProperties().getSuccessIndicatorIncrementDefaultValue();
     }
 
     @Override
