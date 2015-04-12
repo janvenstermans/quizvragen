@@ -124,7 +124,9 @@ public class QuizvragenApplicationControllerImpl
 
     @Override
     public void showSelectionView() {
-        questions = persistence.getVragen();
+        if (questions == null) {
+            questions = persistence.getVragen();
+        }
         categories.clear();
         types.clear();
         statusses.clear();
@@ -143,7 +145,10 @@ public class QuizvragenApplicationControllerImpl
     public void updateStatus(Integer currentQuestionId, boolean improve, int increment) {
         if (currentQuestionId != null && questions.containsKey(currentQuestionId)) {
            Question question = questions.get(currentQuestionId);
-           persistence.saveCategory(question.getRowId(), CategoryUtil.getNewCategory(question.getStatus(), improve, increment));
+           int newCategory = CategoryUtil.
+                   getNewCategory(question.getStatus(), improve, increment);
+            question.setStatus(newCategory);
+           persistence.saveCategory(question.getRowId(), newCategory);
         }
     }    
 
@@ -168,5 +173,10 @@ public class QuizvragenApplicationControllerImpl
             createPersistence();
             showSelectionView();
         }
+    }
+
+    @Override
+    public void saveBuffer() {
+        persistence.saveBuffer();
     }
 }

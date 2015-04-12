@@ -19,4 +19,14 @@ public interface QuizvragenPersistenceService {
     Map<Integer, Question> getVragen();
     
     void saveCategory(int rowId, int category);
+    
+    /**
+     * Set the amount of category/questions that are buffered before saving. 
+     * This should improve the speed of saving.
+     * 
+     * @param amountOfQuestions 
+     */
+    void setBufferAmountQuestions(int amountOfQuestions);
+    
+    void saveBuffer();
 }

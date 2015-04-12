@@ -82,16 +82,14 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
 
     @Override
     public void setAllQuestionsAsked(boolean allAsked) {
+        setAnswerVisible(false);
         if (allAsked) {
-            aswerLabel.setVisible(false);
             questionLabel.setText("alle vragen gesteld, maak een nieuwe selectie");
             setCountLabel(null);
-            notOkButton.setVisible(false);
-            okButton.setVisible(false);
-            showAnswerButton.setVisible(false);
-        } else {
-            setAnswerVisible(false);
         }
+        notOkButton.setVisible(!allAsked);
+        okButton.setVisible(!allAsked);
+        showAnswerButton.setVisible(!allAsked);
     }
 
     @Override

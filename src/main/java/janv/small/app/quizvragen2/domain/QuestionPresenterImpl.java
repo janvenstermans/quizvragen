@@ -9,7 +9,6 @@ package janv.small.app.quizvragen2.domain;
 import janv.small.app.quizvragen2.Quizvragen;
 import janv.small.app.quizvragen2.QuizvragenApplicationController;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -86,6 +85,7 @@ public class QuestionPresenterImpl implements QuestionPresenter,
 
     @Override
     public void onNewSelection() {
+        applicationController.saveBuffer();
         applicationController.showSelectionView();
     }
     

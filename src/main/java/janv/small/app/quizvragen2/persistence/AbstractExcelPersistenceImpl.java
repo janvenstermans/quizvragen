@@ -36,6 +36,10 @@ public abstract class AbstractExcelPersistenceImpl implements
     
     private File excelFile;
     private ExcelVersion version;
+    
+    private int buffer = 10;
+
+    private Map<Integer, Integer> rowStatusMap = new HashMap<Integer, Integer>();
 
     public AbstractExcelPersistenceImpl(File excelFile, ExcelVersion version) {
        this.excelFile = excelFile;
@@ -63,7 +67,31 @@ public abstract class AbstractExcelPersistenceImpl implements
     }
     
     @Override
+    public void setBufferAmountQuestions(int amountOfQuestions) {
+        if (amountOfQuestions < 1) {
+            buffer = 10;
+        }
+        buffer = amountOfQuestions;
+    }
+
+    @Override
+    public void saveBuffer() {
+        if (rowStatusMap.size() > 0) {
+            BufferSaver bufferSaver = new BufferSaver(rowStatusMap);
+            new Thread(bufferSaver).start();
+            rowStatusMap.clear();
+        }
+    }
+    
+    @Override
     public void saveCategory(int rowId, int status) {
+        rowStatusMap.put(rowId, status);
+        if (rowStatusMap.size() >= buffer) {
+           saveBuffer();
+        }
+    }
+    
+    private void saveCategoryBuffer(Map<Integer, Integer> rowStatusBuffer) {
         FileInputStream fis = null;
         Workbook wb = null;
         try {
@@ -80,8 +108,11 @@ public abstract class AbstractExcelPersistenceImpl implements
             if (wb != null) {
                 Sheet sheet1 = wb.getSheetAt(0);
                 if (sheet1 != null) {
-                    Row row = sheet1.getRow(rowId);
-                    saveStatus(row, status);
+                    for (Map.Entry<Integer, Integer> entry 
+                            : rowStatusBuffer.entrySet()) {
+                        Row row = sheet1.getRow(entry.getKey());
+                        saveStatus(row, entry.getValue());
+                    }
                 }
             }
         } catch (FileNotFoundException ex) {
@@ -93,7 +124,7 @@ public abstract class AbstractExcelPersistenceImpl implements
                 fis.close();
                 FileOutputStream fos = new FileOutputStream(excelFile);
                 wb.write(fos);
-               fos.close();
+                fos.close();
             } catch (IOException ex) {
                 Logger.getLogger(AbstractExcelPersistenceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -133,4 +164,19 @@ public abstract class AbstractExcelPersistenceImpl implements
     
     protected abstract Question getVraagFromRow(Row row);
     protected abstract void saveStatus(Row row, int status);
+    
+    private class BufferSaver implements Runnable {
+        
+        private Map<Integer, Integer> rowStatusBuffer;
+
+        public BufferSaver(Map<Integer, Integer> rowStatusBuffer) {
+            this.rowStatusBuffer = new HashMap<Integer, Integer>(rowStatusBuffer);
+        }
+
+        @Override
+        public void run() {
+            saveCategoryBuffer(rowStatusBuffer);
+        }
+        
+    }
 }

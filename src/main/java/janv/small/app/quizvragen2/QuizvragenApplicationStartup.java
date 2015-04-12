@@ -9,11 +9,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class QuizvragenApplicationStartup extends Application
@@ -29,6 +33,11 @@ implements StageContainer {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         Quizvragen.getInstance().getQuizvragenApplicationController().setStageContainer(this);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                Quizvragen.getInstance().getQuizvragenApplicationController().saveBuffer();
+            }
+        });
     }
 
     /**
