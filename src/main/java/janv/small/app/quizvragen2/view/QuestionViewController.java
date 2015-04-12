@@ -2,15 +2,13 @@ package janv.small.app.quizvragen2.view;
 
 import janv.small.app.quizvragen2.domain.QuestionPresenter;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class QuestionViewController implements Initializable, QuestionPresenter.View {
     
@@ -33,9 +31,11 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     private Label questionCount;
     
     @FXML
-    private ChoiceBox incrementChoiceBox;
+    private TextField incrementTextField;
     
     private QuestionPresenter.Handler vragenHandler;
+    
+    private int defaultIncrementValue;
     
     @FXML
     private void handleShowAnswerButtonAction(ActionEvent event) {
@@ -45,12 +45,12 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     
     @FXML
     private void handleOkButtonAction(ActionEvent event) {
-        vragenHandler.onOk(getIncrementChoiceBoxValue());
+        vragenHandler.onOk(getIncrementValueToSend());
     }
     
     @FXML
     private void handleNotOkButtonAction(ActionEvent event) {
-        vragenHandler.onNotOk(getIncrementChoiceBoxValue());
+        vragenHandler.onNotOk(getIncrementValueToSend());
     }
     
     @FXML
@@ -100,16 +100,37 @@ public class QuestionViewController implements Initializable, QuestionPresenter.
     }
     
     @Override
-    public void setIncrementValues(List<Integer> incrementValues) {
-        incrementChoiceBox.setItems(FXCollections.observableArrayList(incrementValues));
+    public void setShownDefaultIncrementValue(int defaultIncrementValue) {
+        this.defaultIncrementValue = defaultIncrementValue;
+        Integer incrementValueFromGui = getIncrementChoiceBoxValue();
+        if (incrementValueFromGui == null) {
+            setShownIncrementValue(defaultIncrementValue);
+        }
     }
     
     @Override
     public void setShownIncrementValue(Integer incrementValue) {
-        incrementChoiceBox.setValue(incrementValue);
+        incrementTextField.setText(incrementValue != null ? incrementValue.toString() : "");
     }
     
-    private int getIncrementChoiceBoxValue() {
-        return (Integer) incrementChoiceBox.getValue();
+    private int getIncrementValueToSend() {
+        Integer incrementValueFromGui = getIncrementChoiceBoxValue();
+        if (incrementValueFromGui != null) {
+            return incrementValueFromGui;
+        }
+        setShownIncrementValue(defaultIncrementValue);
+        return defaultIncrementValue;
+    }
+    
+    private Integer getIncrementChoiceBoxValue() {
+        String incrementText = incrementTextField.getText();
+        if (incrementText != null) {
+            try {
+                return Integer.parseInt(incrementText);
+            } catch(NumberFormatException nfe) {
+                // do nothing
+            }
+        }
+        return null;
     }
 }

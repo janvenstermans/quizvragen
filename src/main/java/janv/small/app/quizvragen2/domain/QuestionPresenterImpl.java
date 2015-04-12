@@ -36,10 +36,12 @@ public class QuestionPresenterImpl implements QuestionPresenter,
         this.view = view;
         view.setHandler(this);
         // increment values
-        view.setIncrementValues(Quizvragen.getInstance().
-                getQuizvragenProperties().getSuccessIndicatorIncrementChoiceList());
         defaultIncrementValue = Quizvragen.getInstance().
                 getQuizvragenProperties().getSuccessIndicatorIncrementDefaultValue();
+        if (defaultIncrementValue <= 0) {
+            defaultIncrementValue = 1;
+        }
+        view.setShownDefaultIncrementValue(defaultIncrementValue);
     }
 
     @Override
@@ -58,7 +60,6 @@ public class QuestionPresenterImpl implements QuestionPresenter,
             view.setAnswerVisible(false);
             Question question = questionsLinkedHashMap.get(questionId);
             view.setQuestionAnswer(question.getQuestion(), question.getResponse());
-            view.setShownIncrementValue(defaultIncrementValue);
             int questionPosition = currentQuestionIndex + 1;
             view.setCountLabel(questionPosition + "/" + questionsLinkedHashMap.size());
         } else {
